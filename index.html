@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <span>1</span><input type="range" min="1" max="20" id="range"><span>20</span>
+        <input type="color" id="colorr" >
+        <input type="text" id="style">
+      <button  type="button" id="left">L</button>
+      <button  type="button" id="center">C</button>
+      <button  type="button" id="right">R</button>
+    </form>
+    <div id="output"> Love You Raji </div>
+    <script type="text/javascript">
+    
+    //     function changeFont() {  
+    //         let rangev = document.getElementById("range").value;  
+    //         console.log(rangev);;
+    //          let text=document.getElementById("text");
+    //          text.style.fontSize= rangev + "px";
+    //     }  
+    //   function changecolor() {
+    //     let colorv = document.getElementById("color").value;
+    //     let text = document.getElementById("text");
+    //     text.style.color= colorv;
+    //     console.log(colorv);
+    //   }
+      let rangev= document.getElementById("range")
+      let colorv =document.getElementById("colorr")
+      let textv = document.getElementById("style")
+      let outputv=document.getElementById("output")
+      let lv = document.getElementById("left")
+      let cv = document.getElementById("center")
+      let rv = document.getElementById("right")
+      rangev.addEventListener("input",function(){
+        outputv.style.fontSize = rangev.value + "rem";
+    })  
+      colorv.addEventListener("input",function(){
+        outputv.style.color= colorv.value ;
+      })
+      textv.addEventListener("input",function(){
+        outputv.style.fontStyle=textv.value;
+      })
+      lv.addEventListener("click", function() {
+            outputv.style.textAlign = "left";
+        });
+        cv.addEventListener("click", function() {
+            outputv.style.textAlign = "center";
+        });
+        rv.addEventListener("click", function() {
+            outputv.style.textAlign = "right";
+        });
+
+    </script>
+</body>
+</html>
