@@ -1,60 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form>
-        <span>1</span><input type="range" min="1" max="20" id="range"><span>20</span>
-        <input type="color" id="colorr" >
-        <input type="text" id="style">
-      <button  type="button" id="left">L</button>
-      <button  type="button" id="center">C</button>
-      <button  type="button" id="right">R</button>
-    </form>
-    <div id="output">Manu</div>
-    <script type="text/javascript">
-    
-    //     function changeFont() {  
-    //         let rangev = document.getElementById("range").value;  
-    //         console.log(rangev);;
-    //          let text=document.getElementById("text");
-    //          text.style.fontSize= rangev + "px";
-    //     }  
-    //   function changecolor() {
-    //     let colorv = document.getElementById("color").value;
-    //     let text = document.getElementById("text");
-    //     text.style.color= colorv;
-    //     console.log(colorv);
-    //   }
-      let rangev= document.getElementById("range")
-      let colorv =document.getElementById("colorr")
-      let textv = document.getElementById("style")
-      let outputv=document.getElementById("output")
-      let lv = document.getElementById("left")
-      let cv = document.getElementById("center")
-      let rv = document.getElementById("right")
-      rangev.addEventListener("input",function(){
-        outputv.style.fontSize = rangev.value + "rem";
-    })  
-      colorv.addEventListener("input",function(){
-        outputv.style.color= colorv.value ;
-      })
-      textv.addEventListener("input",function(){
-        outputv.style.fontStyle=textv.value;
-      })
-      lv.addEventListener("click", function() {
-            outputv.style.textAlign = "left";
-        });
-        cv.addEventListener("click", function() {
-            outputv.style.textAlign = "center";
-        });
-        rv.addEventListener("click", function() {
-            outputv.style.textAlign = "right";
-        });
+    <!-- Simplified CSS imports to avoid duplicates -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Eduport Header</title>
+    <style>
+        /* footer */
+        /* Footer image responsive styling */
+.footer-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
+        /* Custom styles for header padding */
+        .navbar {
+            padding: 15px 0;
+            background-color: #ffffff !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0 15px;
+            color: #2a41e8 !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 8px;
+        }
+
+        .nav-link {
+            padding: 10px 15px !important;
+            margin: 0 5px;
+            font-weight: 500;
+            color: #333 !important;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: #2a41e8 !important;
+            background-color: rgba(42, 65, 232, 0.08);
+        }
+
+        /* Dropdown menu styling */
+        .dropdown-menu {
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(42, 65, 232, 0.08);
+            color: #2a41e8;
+            padding-left: 25px;
+        }
+
+        /* Add dividers between dropdown items */
+        .dropdown-divider {
+            margin: 5px 0;
+        }
+
+        /* Search bar and person icon */
+        .form-control {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(42, 65, 232, 0.15);
+            border-color: #2a41e8;
+        }
+
+        .btn-outline-success {
+            padding: 10px 15px;
+            background-color: #2a41e8;
+            border-color: #2a41e8;
+            color: white;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #1e32c3;
+            border-color: #1e32c3;
+        }
+
+        .bi-person-circle {
+            font-size: 1.5rem !important;
+            color: #555;
+            transition: color 0.3s ease;
+            padding: 6px;
+        }
+
+        .bi-person-circle:hover {
+            color: #2a41e8;
+        }
+
+        /* Add more space between nav items */
+        .navbar-nav>li {
+            margin: 0 3px;
+        }
+
+        /* Main image responsive styling */
+        .main-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        /* Category section styling */
+        .category-section {
+            padding: 50px 0;
+            background-color: #f5f7fa;
+        }
+
+        .category-item {
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2a41e8;
+        }
+
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #333;
+        }
+
+        /* Course cards styling */
+        .course-section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .course-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-category {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: rgba(42, 65, 232, 0.1);
+            color: #2a41e8;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .course-rating {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .course-price {
+            font-weight: 700;
+            color: #2a41e8;
+            font-size: 1.2rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .course-instructor {
+            display: flex;
+            align-items: center;
+        }
+
+        .instructor-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .course-lessons {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries for Responsiveness */
+        /* Large devices (desktops, landscape) */
+        @media (min-width: 992px) {
+            .navbar-collapse {
+                display: flex !important;
+                flex-basis: auto;
+            }
+
+            .navbar-nav {
+                flex-direction: row;
+            }
+
+            .d-flex {
+                display: flex !important;
+            }
+        }
+
+        /* Medium devices (tablets, landscape phones) */
+        @media (max-width: 991.98px) {
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+
+            .navbar-nav>li {
+                margin: 0;
+            }
+
+            .navbar-nav {
+                margin-top: 10px;
+            }
+
+            .nav-link {
+                padding: 8px 12px !important;
+                margin: 0;
+            }
+
+            .d-flex {
+                display: flex !important;
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            .form-control {
+                flex: 1;
+            }
+
+            .ms-3 {
+                margin-left: 10px !important;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        /* Small devices (landscape phones, portrait tablets) */
+        @media (max-width: 767.98px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .d-flex {
+                flex-direction: column;
+            }
+
+            .form-control {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .btn-outline-success {
+                width: 100%;
+            }
+
+            .ms-3 {
+                margin-left: 0 !important;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .category-item {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Extra small devices (portrait phones) */
+        @media (max-width: 575.98px) {
+            .navbar-brand {
+                font-size: 1.1rem;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Specific styles for portrait orientation */
+        @media (orientation: portrait) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .dropdown-menu {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+
+        /* Specific styles for landscape orientation */
+        @media (orientation: landscape) and (max-width: 991.98px) {
+            .navbar {
+                padding: 8px 0;
+            }
+
+            .navbar-collapse {
+                max-height: calc(100vh - 70px);
+                overflow-y: auto;
+            }
+
+            .d-flex {
+                flex-direction: row;
+            }
+
+            .form-control {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+
+            .btn-outline-success {
+                width: auto;
+            }
+
+            .ms-3 {
+                margin-left: 10px !important;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <!-- Eduport Logo SVG -->
+                    <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="#2a41e8" />
+                        <path d="M10 12H30V16H10V12Z" fill="white" />
+                        <path d="M10 18H30V22H10V18Z" fill="white" />
+                        <path d="M10 24H20V28H10V24Z" fill="white" />
+                        <circle cx="28" cy="26" r="4" fill="white" />
+                    </svg>
+                    Eduport
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Category Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Category
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                <li><a class="dropdown-item" href="#">Home Default</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Home Education</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Home Course</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Home University</a></li>
+                            </ul>
+                        </li>
+                        <!-- Demos Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="demosDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Demos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="demosDropdown">
+                                <li><a class="dropdown-item" href="#">Course</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">About</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Event Detail</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Hero Banner</a></li>
+                            </ul>
+                        </li>
+                        <!-- Account Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="#">Instructor</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Student</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Admin</a></li>
+                            </ul>
+                        </li>
+                        <!-- Megamenu -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Megamenu</a>
+                        </li>
+                    </ul>
+                    <!-- Search Bar and Person Icon -->
+                    <div class="d-flex align-items-center">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <a href="#" class="ms-3">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Responsive image -->
+    <div class="container-fluid p-0">
+        <img src="../public/images/image.png" alt="body image" class="main-image">
+    </div>
+
+    <!-- Category Section -->
+    <section class="category-section">
+        <div class="container">
+            <div class="row">
+                <!-- Web Design -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-laptop category-icon"></i>
+                        <h5 class="category-title">Web Design</h5>
+                    </div>
+                </div>
+                <!-- Development -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-code-slash category-icon"></i>
+                        <h5 class="category-title">Development</h5>
+                    </div>
+                </div>
+                <!-- Graphic Design -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-palette category-icon"></i>
+                        <h5 class="category-title">Graphic Design</h5>
+                    </div>
+                </div>
+                <!-- Marketing -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-graph-up-arrow category-icon"></i>
+                        <h5 class="category-title">Marketing</h5>
+                    </div>
+                </div>
+                <!-- Finance -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-cash-coin category-icon"></i>
+                        <h5 class="category-title">Finance</h5>
+                    </div>
+                </div>
+                <!-- All Courses -->
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="category-item">
+                        <i class="bi bi-grid-3x3-gap category-icon"></i>
+                        <h5 class="category-title">All Courses</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Course Section -->
+    <section class="course-section">
+        <div class="container">
+            <h2 class="section-title">Popular Courses</h2>
+            <div class="row">
+                <!-- Course Card 1 - Web Design -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/WEB-DESIGN.png" class="card-img-top course-image" alt="Web Design Course">  
+
+                        <div class="card-body">
+                            <span class="course-category">Web Design</span>
+                            <h5 class="course-title">The Complete Web Design Course</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <span>4.5 (128)</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 - Development -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/full.png" class="card-img-top course-image" alt="Development Course">
+                        <div class="card-body">
+                            <span class="course-category">Development</span>
+                            <h5 class="course-title">Full Stack JavaScript Developer</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <span>4.0 (95)</span>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 - Graphic Design -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/master.webp" class="card-img-top course-image" alt="Graphic Design Course">
+                        <div class="card-body">
+                            <span class="course-category">Graphic Design</span>
+                            <h5 class="course-title">Adobe Photoshop Masterclass</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </span>
+                                <span>5.0 (210)</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 - Marketing -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/marketing.png" class="card-img-top course-image" alt="Marketing Course">
+                        <div class="card-body">
+                            <span class="course-category">Marketing</span>
+                            <h5 class="course-title">Digital Marketing Strategy</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <span>4.7 (156)</span>
+                            </div>
+                           
+                             
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 5 - Finance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/finance.png" class="card-img-top course-image" alt="Finance Course">
+                        <div class="card-body">
+                            <span class="course-category">Finance</span>
+                            <h5 class="course-title">Personal Finance Fundamentals</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </span>
+                                <span>4.2 (89)</span>
+                            </div>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 6 - Web Development -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card">
+                        <img src="../public/web.jpeg" class="card-img-top course-image" alt="Web Development Course">
+                        <div class="card-body">
+                            <span class="course-category">Development</span>
+                            <h5 class="course-title">React.js for Beginners</h5>
+                            <div>
+                                <span class="course-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </span>
+                                <span>4.6 (178)</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   <!-- Footer with responsive image -->
+<footer class="container-fluid p-0">
+    <img src="../public/images/Screenshot 2025-03-24 165345.png" alt="Footer image" class="footer-image">
+</footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76A2YpOJpHdX2LtE6H3pi8FZ9fF1JoKx04p3Y9E6iEJo74lrj2gKtHf5Dg7xTkt"
+        crossorigin="anonymous"></script>
+
+    <!-- Initialize Bootstrap dropdowns -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // This ensures all Bootstrap components are properly initialized
+            var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+            var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                return new bootstrap.Dropdown(dropdownToggleEl)
+            })
+        });
     </script>
 </body>
+
 </html>
